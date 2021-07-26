@@ -1,0 +1,24 @@
+{
+  "name": "simplenft",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "yarn workspace contracts test",
+    "dev": "run-p dev:*",
+    "dev:run-localchain": "yarn workspace contracts localchain",
+    "dev:deploy-contract-to-localchain": "wait-on http://localhost:8545 && yarn workspace contracts deploy",
+    "dev:frontend": "wait-on http://localhost:8545 && yarn workspace frontend dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "private": true,
+  "workspaces": [
+    "packages/**"
+  ],
+  "devDependencies": {
+    "npm-run-all": "^4.1.5",
+    "wait-on": "^6.0.0"
+  }
+}
