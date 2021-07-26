@@ -8,7 +8,9 @@
     "dev": "run-p dev:*",
     "dev:run-localchain": "yarn workspace contracts localchain",
     "dev:deploy-contract-to-localchain": "wait-on http://localhost:8545 && yarn workspace contracts deploy",
-    "dev:frontend": "wait-on http://localhost:8545 && yarn workspace frontend dev"
+    "dev:frontend": "wait-on http://localhost:8545 && yarn workspace frontend dev",
+    "dev-staging": "run-p dev-staging:*",
+    "dev-staging:frontend": "yarn workspace frontend dev"
   },
   "keywords": [],
   "author": "",
