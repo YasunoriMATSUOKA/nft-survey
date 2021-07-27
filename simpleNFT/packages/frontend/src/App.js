@@ -1,3 +1,4 @@
+import React, {useRef} from "react";
 import './App.css';
 //ethereumのライブラリー
 import { ethers } from "ethers";
@@ -54,12 +55,14 @@ const buttonBalanceOf = async() => {
   console.log(await contract.connect(signer).balanceOf(signer.getAddress()));
 }
 //Clickの処理.NFTのownerOf
-const buttonOwnerOf = async() => {
+const buttonOwnerOf = async(tokenId) => {
+  console.log(tokenId);
   const signer = provider.getSigner();
   const contract = new ethers.Contract(address, abi, provider);
-  console.log(await contract.connect(signer).ownerOf(0));
+  console.log(await contract.connect(signer).ownerOf(tokenId));
 }
 function App() {
+  const tokenIdRef = useRef(null);
   return (
     <div className="App">
     <p>動作</p>
@@ -68,7 +71,8 @@ function App() {
     <button id="test2" onClick={buttonMint}>NFT mint</button><br/>
     <button id="test2" onClick={buttonSupply}>NFT totalSupply</button><br />
     <button id="test3" onClick={buttonBalanceOf}>NFT balanceOf</button><br />
-    <button id="test4" onClick={buttonOwnerOf}>NFT ownerOf</button><br />
+    <span>tokenId: </span><input ref={tokenIdRef} type="number" /><br />
+    <button id="test4" onClick={() => buttonOwnerOf(tokenIdRef.current.value)}>NFT ownerOf</button><br />
     </div>
   );
 }
