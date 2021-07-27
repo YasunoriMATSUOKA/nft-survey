@@ -47,6 +47,12 @@ const buttonSupply = async() => {
   console.log(address);
   console.log(await contract.totalSupply());
 };
+//Clickの処理.NFTのbalanceOf
+const buttonBalanceOf = async() => {
+  const signer = provider.getSigner();
+  const contract = new ethers.Contract(address, abi, provider);
+  console.log(await contract.connect(signer).balanceOf(signer.getAddress()));
+}
 function App() {
   return (
     <div className="App">
@@ -54,7 +60,8 @@ function App() {
     <button id="test" onClick={buttonDeploy}>NFT deploy</button><br/>
     <button id="test1" onClick={buttonGetName}>NFT get name</button><br/>
     <button id="test2" onClick={buttonMint}>NFT mint</button><br/>
-    <button id="test2" onClick={buttonSupply}>NFT totalSupply</button>
+    <button id="test2" onClick={buttonSupply}>NFT totalSupply</button><br />
+    <button id="test3" onClick={buttonBalanceOf}>NFT balanceOf</button><br />
     </div>
   );
 }
