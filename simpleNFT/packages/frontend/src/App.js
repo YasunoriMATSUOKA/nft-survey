@@ -66,16 +66,16 @@ const buttonTokenURI = async(tokenId) => {
   const contract = new ethers.Contract(address, abi, provider);
   console.log(await contract.connect(signer).tokenURI(tokenId));
 }
-//Clickの処理.NFTのsafeTransferFrom ... 現時点ではうまく動いていない
-// const buttonSafeTransferFrom = async(fromAddress, toAddress, tokenId) => {
-//   console.log(fromAddress, toAddress, tokenId);
-//   const signer = provider.getSigner();
-//   console.log(1);
-//   const contract = new ethers.Contract(address, abi, provider);
-//   console.log(2);
-//   await contract.safeTransferFrom(signer.getAddress(), toAddress, tokenId)
-//   console.log(await contract.connect(signer).safeTransferFrom(signer.getAddress(), toAddress, tokenId));
-// }
+//Clickの処理.NFTのtransferFrom
+const buttonTransferFrom = async(fromAddress, toAddress, tokenId) => {
+  console.log(fromAddress, toAddress, tokenId);
+  const signer = provider.getSigner();
+  console.log(1);
+  const contract = new ethers.Contract(address, abi, provider);
+  console.log(2);
+  const transferFromResult = await contract.connect(signer).transferFrom(fromAddress, toAddress, tokenId)
+  console.log(transferFromResult);
+}
 function App() {
   const fromAddressRef = useRef(null);
   const toAddressRef = useRef(null);
@@ -93,7 +93,7 @@ function App() {
     <span>tokenId: </span><input ref={tokenIdRef} type="number" /><br />
     <button id="test4" onClick={() => buttonTokenURI(tokenIdRef.current.value)}>NFT tokenURI</button><br />
     <button id="test4" onClick={() => buttonOwnerOf(tokenIdRef.current.value)}>NFT ownerOf</button><br />
-    {/* <button id="test5" onClick={() => buttonSafeTransferFrom(fromAddressRef.current.value, toAddressRef.current.value , tokenIdRef.current.value)}>NFT safeTransferFrom</button><br /> */}
+    <button id="test5" onClick={() => buttonTransferFrom(fromAddressRef.current.value, toAddressRef.current.value , tokenIdRef.current.value)}>NFT transferFrom</button><br />
     </div>
   );
 }
