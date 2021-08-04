@@ -25,7 +25,7 @@ const chainIdToEtherscanPrefix = (chainId) => {
 (async () => {
   // deploy contract
   // Ethereumの場合
-  const provider = ethers.getDefaultProvider("rinkeby", {infura: process.env.INFURA_PROJECT_ID});
+  const provider = ethers.getDefaultProvider("goerli", {infura: process.env.INFURA_PROJECT_ID});
   // Polygon Mumbai Testnetの場合
   // const provider = new ethers.providers.JsonRpcProvider(`https://polygon-mumbai.infura.io/v3/${process.env.INFURA_PROJECT_ID}`);
   const privateKey = process.env.PRIVATE_KEY;
